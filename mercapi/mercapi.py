@@ -60,6 +60,8 @@ class Mercapi:
         colors: List[int] = [],
         shipping_methods: List[SearchRequestData.ShippingMethod] = [],
         status: List[SearchRequestData.Status] = [],
+        sort_: str = "SORT_SCORE",
+        order: str = "ORDER_DESC",
     ) -> SearchResults:
         """Perform basic search and return list of items and metadata.
         This method reflects the action of using search bar at the top of the website.
@@ -96,6 +98,8 @@ class Mercapi:
                 colors,
                 shipping_methods,
                 status,
+                sort_,
+                order,
             ),
         )
         res = await self._client.send(self._search(request))

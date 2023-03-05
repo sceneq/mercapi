@@ -32,6 +32,8 @@ class SearchRequestData(RequestData):
             default_factory=list
         )
         status: List["SearchRequestData.Status"] = field(default_factory=list)
+        sort_: str = field(default_factory=str)
+        order: str = field(default_factory=str)
 
     def __init__(self, search_conditions: SearchConditions):
         super().__init__()
@@ -45,6 +47,8 @@ class SearchRequestData(RequestData):
             item_conditions,
             shipping_payer,
             colors,
+            sort_,
+            order,
         ) = map(
             search_conditions.__dict__.get,
             (
@@ -57,6 +61,8 @@ class SearchRequestData(RequestData):
                 "item_categories",
                 "shipping_payer",
                 "colors",
+                "sort_",
+                "order",
             ),
         )
         shipping_methods = [i.name for i in search_conditions.shipping_methods]
@@ -74,8 +80,8 @@ class SearchRequestData(RequestData):
             "searchCondition": {
                 "keyword": query,
                 "excludeKeyword": "",
-                "sort": "SORT_SCORE",
-                "order": "ORDER_DESC",
+                "sort": sort_,
+                "order": order,
                 "status": [],
                 "sizeId": sizes,
                 "categoryId": categories,
