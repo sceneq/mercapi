@@ -58,7 +58,7 @@ class SearchRequestData(RequestData):
                 "sizes",
                 "price_min",
                 "price_max",
-                "item_categories",
+                "item_conditions",
                 "shipping_payer",
                 "colors",
                 "sort_",
